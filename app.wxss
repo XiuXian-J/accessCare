@@ -1,0 +1,383 @@
+/**
+ * app.wxss —— 全局样式与无障碍主题
+ *
+ * 设计约定（全项目强制遵守）：
+ *   1. 尺寸一律用 rpx，不用 px，保证不同机型等比适配；
+ *   2. 尺寸与颜色一律写在样式表里，组件上禁止书写内联 style，
+ *      否则无障碍主题的后代选择器无法覆盖，换肤功能会失效；
+ *   3. 每个页面根节点统一写成 <view class="page {{a11yClass}}">，
+ *      a11yClass 由 app.js 的 a11yClass() 生成，是全局换肤的开关。
+ */
+
+/* ============================ 1. 基础重置 ============================ */
+page {
+  background-color: #F5F7F6;
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.page {
+  min-height: 100vh;
+  font-size: 28rpx;
+  color: #333333;
+  padding-bottom: 40rpx;
+  box-sizing: border-box;
+}
+
+/* 字号档位：作用于页面根节点，正文随之整体缩放 */
+.page.a11y-f1 { font-size: 26rpx; }
+.page.a11y-f2 { font-size: 28rpx; }
+.page.a11y-f3 { font-size: 34rpx; }
+
+/* ============================ 2. 布局工具类 ============================ */
+.flex { display: flex; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-1 { flex: 1; }
+.row-gap { display: flex; gap: 16rpx; }
+
+.card {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.divider { height: 2rpx; background-color: #EEEEEE; margin: 20rpx 0; }
+
+/* ============================ 3. 文字层级 ============================ */
+.t-title { font-size: 32rpx; font-weight: bold; color: #222222; }
+.t-sub { font-size: 24rpx; color: #888888; }
+.t-price { font-size: 34rpx; font-weight: bold; color: #D9534F; }
+.t-green { color: #1B7F6B; }
+.t-orange { color: #E8A33D; }
+.t-gray { color: #999999; }
+.t-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.t-clamp2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/* 区块标题（左侧加一条主题色竖线） */
+.section-title {
+  display: flex;
+  align-items: center;
+  margin: 24rpx 20rpx 12rpx 20rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #222222;
+}
+.section-title::before {
+  content: '';
+  width: 8rpx;
+  height: 30rpx;
+  border-radius: 4rpx;
+  background-color: #1B7F6B;
+  margin-right: 12rpx;
+}
+
+/* ============================ 4. 按钮 ============================ */
+.btn-primary {
+  background-color: #1B7F6B;
+  color: #FFFFFF;
+  font-size: 30rpx;
+  border-radius: 44rpx;
+  padding: 20rpx 0;
+  border: none;
+}
+.btn-primary::after { border: none; }
+
+.btn-ghost {
+  background-color: #FFFFFF;
+  color: #1B7F6B;
+  font-size: 30rpx;
+  border: 2rpx solid #1B7F6B;
+  border-radius: 44rpx;
+  padding: 18rpx 0;
+}
+.btn-ghost::after { border: none; }
+
+.btn-mini {
+  display: inline-block;
+  font-size: 24rpx;
+  line-height: 1.4;
+  padding: 8rpx 24rpx;
+  border-radius: 30rpx;
+  margin: 0;
+  background-color: #1B7F6B;
+  color: #FFFFFF;
+}
+.btn-mini::after { border: none; }
+
+.btn-danger {
+  background-color: #FFFFFF;
+  color: #D9534F;
+  border: 2rpx solid #D9534F;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  padding: 8rpx 24rpx;
+  margin: 0;
+}
+.btn-danger::after { border: none; }
+
+/* 底部固定操作条 */
+.footer-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16rpx 30rpx;
+  padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
+  background-color: #FFFFFF;
+  box-shadow: 0 -2rpx 12rpx rgba(0, 0, 0, 0.06);
+  z-index: 20;
+}
+
+/* ============================ 5. 标签 ============================ */
+.tag {
+  display: inline-block;
+  font-size: 22rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  background-color: #EAF5F2;
+  color: #1B7F6B;
+  margin-right: 12rpx;
+}
+.tag-warn { background-color: #FDF2E3; color: #E8A33D; }
+.tag-gray { background-color: #F0F0F0; color: #888888; }
+.tag-red { background-color: #FCEBEA; color: #D9534F; }
+
+/* ============================ 6. 列表项 ============================ */
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  background-color: #FFFFFF;
+  border-bottom: 2rpx solid #F2F2F2;
+}
+.list-item:last-child { border-bottom: none; }
+
+/* 带缩略图的横向卡片 */
+.media-card {
+  display: flex;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin: 0 20rpx 20rpx 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+.media-cover {
+  width: 168rpx;
+  height: 168rpx;
+  border-radius: 12rpx;
+  background-color: #EAF5F2;
+  flex-shrink: 0;
+}
+.media-body { flex: 1; margin-left: 20rpx; overflow: hidden; }
+
+/* 封面上的 emoji 兜底大字（图片加载失败时依然有视觉主体） */
+.cover-box {
+  position: relative;
+  width: 168rpx;
+  height: 168rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: #EAF5F2;
+}
+.cover-box .cover-img { width: 100%; height: 100%; }
+.cover-emoji {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  font-size: 64rpx;
+}
+
+/* ============================ 7. 表单 ============================ */
+.form-card { background-color: #FFFFFF; border-radius: 16rpx; margin: 20rpx; padding: 8rpx 24rpx; }
+
+.form-item {
+  display: flex;
+  align-items: center;
+  min-height: 100rpx;
+  border-bottom: 2rpx solid #F2F2F2;
+}
+.form-item:last-child { border-bottom: none; }
+.form-item.form-column { display: block; padding: 20rpx 0; }
+
+.form-label {
+  width: 180rpx;
+  font-size: 28rpx;
+  color: #333333;
+  flex-shrink: 0;
+}
+.form-label.required::after { content: ' *'; color: #D9534F; }
+
+.form-input {
+  flex: 1;
+  font-size: 28rpx;
+  text-align: right;
+  color: #333333;
+}
+.form-input.left { text-align: left; }
+
+.form-textarea {
+  width: 100%;
+  min-height: 160rpx;
+  font-size: 28rpx;
+  padding: 16rpx;
+  box-sizing: border-box;
+  background-color: #F7F9F8;
+  border-radius: 12rpx;
+}
+
+.form-value { flex: 1; text-align: right; font-size: 28rpx; color: #333333; }
+.form-value.placeholder { color: #BBBBBB; }
+
+/* 单选 / 多选行 */
+.option-list { display: flex; flex-wrap: wrap; padding: 12rpx 0; }
+.option-item {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #444444;
+  margin: 0 28rpx 20rpx 0;
+  padding: 10rpx 22rpx;
+  border-radius: 30rpx;
+  background-color: #F5F7F6;
+}
+.option-item radio,
+.option-item checkbox { transform: scale(0.8); }
+.option-item.active { background-color: #EAF5F2; color: #1B7F6B; }
+
+/* 开关行 */
+.switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid #F2F2F2;
+}
+.switch-row:last-child { border-bottom: none; }
+
+/* 表单校验错误提示 */
+.form-tip {
+  font-size: 24rpx;
+  color: #D9534F;
+  padding: 0 24rpx 16rpx 24rpx;
+}
+
+/* ============================ 8. 空状态 ============================ */
+.empty {
+  padding: 140rpx 40rpx;
+  text-align: center;
+}
+.empty-icon { font-size: 100rpx; display: block; margin-bottom: 20rpx; }
+.empty-text { font-size: 28rpx; color: #999999; display: block; }
+.empty-btn { width: 320rpx; margin: 30rpx auto 0 auto; }
+
+/* ============================ 9. 状态徽标 ============================ */
+.status {
+  font-size: 22rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 8rpx;
+  color: #FFFFFF;
+}
+.status-pending { background-color: #E8A33D; }
+.status-ongoing { background-color: #1B7F6B; }
+.status-done { background-color: #999999; }
+.status-canceled { background-color: #BBBBBB; }
+.status-overdue { background-color: #D9534F; }
+
+/* ============================ 10. 滚动视图 ============================ */
+/* 横向滚动的三件套：white-space + inline-block + scroll-x */
+.scroll-x {
+  white-space: nowrap;
+  width: 100%;
+}
+.scroll-x-item {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* ============================ 11. 无障碍主题（核心创新点） ============================ */
+/* 说明：a11y-big / a11y-contrast / a11y-simple 三个 class 加在页面根节点上，
+   下面全部采用「后代选择器」，一处开关即可覆盖整页所有元素。 */
+
+/* ---- 11.1 大字体模式 ---- */
+.a11y-big .t-title { font-size: 40rpx; }
+.a11y-big .t-sub { font-size: 32rpx; }
+.a11y-big .t-price { font-size: 42rpx; }
+.a11y-big .section-title { font-size: 38rpx; }
+.a11y-big .btn-primary { font-size: 38rpx; padding: 28rpx 0; }
+.a11y-big .btn-ghost { font-size: 38rpx; padding: 26rpx 0; }
+.a11y-big .form-label { font-size: 34rpx; width: 210rpx; }
+.a11y-big .form-input { font-size: 34rpx; }
+.a11y-big .option-item { font-size: 32rpx; padding: 16rpx 28rpx; }
+.a11y-big .tag { font-size: 28rpx; padding: 8rpx 20rpx; }
+.a11y-big .empty-text { font-size: 34rpx; }
+
+/* ---- 11.2 高对比模式（黑底黄字，弱视友好，参照 WCAG AAA 对比度） ---- */
+.a11y-contrast.page,
+.a11y-contrast.page .page { background-color: #000000; }
+
+.a11y-contrast,
+.a11y-contrast.page { color: #FFFFFF; }
+
+.a11y-contrast .t-title,
+.a11y-contrast .section-title { color: #FFFFFF; }
+.a11y-contrast .t-sub,
+.a11y-contrast .t-gray { color: #D8D8D8; }
+.a11y-contrast .t-clamp2 { color: #FFFFFF; }
+
+.a11y-contrast .card,
+.a11y-contrast .media-card,
+.a11y-contrast .form-card,
+.a11y-contrast .list-item {
+  background-color: #111111;
+  border: 2rpx solid #FFD400;
+  color: #FFFFFF;
+}
+.a11y-contrast .list-item { border-left: none; border-right: none; border-top: none; }
+.a11y-contrast .divider { background-color: #FFD400; }
+.a11y-contrast .form-item,
+.a11y-contrast .switch-row { border-bottom-color: #555555; }
+
+.a11y-contrast .btn-primary { background-color: #FFD400; color: #000000; font-weight: bold; }
+.a11y-contrast .btn-ghost { background-color: #000000; color: #FFD400; border-color: #FFD400; }
+.a11y-contrast .btn-mini { background-color: #FFD400; color: #000000; }
+.a11y-contrast .btn-danger { background-color: #000000; color: #FFD400; border-color: #FFD400; }
+
+.a11y-contrast .tag {
+  background-color: #000000;
+  color: #FFD400;
+  border: 2rpx solid #FFD400;
+}
+.a11y-contrast .form-input,
+.a11y-contrast .form-value,
+.a11y-contrast .form-textarea { color: #FFFFFF; background-color: #1A1A1A; }
+.a11y-contrast .form-textarea { border: 2rpx solid #FFD400; }
+.a11y-contrast .option-item { background-color: #1A1A1A; color: #FFFFFF; border: 2rpx solid #666666; }
+.a11y-contrast .option-item.active { background-color: #000000; color: #FFD400; border-color: #FFD400; }
+.a11y-contrast .footer-bar { background-color: #000000; border-top: 2rpx solid #FFD400; }
+.a11y-contrast .section-title::before { background-color: #FFD400; }
+.a11y-contrast .empty-text { color: #D8D8D8; }
+.a11y-contrast .status { color: #000000; }
+
+/* ---- 11.3 简化模式（隐藏次要信息，降低认知负荷） ---- */
+/* 页面只需给次要区块加上 simple-hide 类，简化模式下即可整体隐藏 */
+.a11y-simple .simple-hide { display: none !important; }
+.a11y-simple .card,
+.a11y-simple .media-card { padding: 32rpx; margin: 24rpx 20rpx; }
+.a11y-simple .btn-primary,
+.a11y-simple .btn-ghost { width: 100%; }
+.a11y-simple .section-title { margin-top: 32rpx; }

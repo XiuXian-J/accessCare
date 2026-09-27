@@ -1,0 +1,82 @@
+<!-- pages/settings/settings.wxml —— 无障碍设置（核心创新点） -->
+<view class="page {{a11yClass}}">
+
+  <!-- 顶部说明 -->
+  <view class="intro-card">
+    <text class="intro-title">让每个人都能顺畅使用</text>
+    <text class="intro-sub">以下设置会立即作用于整个小程序，并保存在本机，下次打开依然生效。</text>
+  </view>
+
+  <!-- ========== 三个功能开关：switch 组件 ========== -->
+  <view class="form-card">
+    <view class="switch-row">
+      <view class="switch-left">
+        <text class="switch-title">大字体模式</text>
+        <text class="t-sub">放大正文、按钮与标签，方便低视力用户阅读</text>
+      </view>
+      <switch checked="{{bigFont}}" color="#1B7F6B" data-key="bigFont" bindchange="onSwitchChange" />
+    </view>
+
+    <view class="switch-row">
+      <view class="switch-left">
+        <text class="switch-title">高对比模式</text>
+        <text class="t-sub">黑底黄字高对比配色，降低弱视用户的辨认难度</text>
+      </view>
+      <switch checked="{{highContrast}}" color="#1B7F6B" data-key="highContrast" bindchange="onSwitchChange" />
+    </view>
+
+    <view class="switch-row">
+      <view class="switch-left">
+        <text class="switch-title">简化模式</text>
+        <text class="t-sub">隐藏轮播、快捷入口等次要内容，降低认知负荷</text>
+      </view>
+      <switch checked="{{simpleMode}}" color="#1B7F6B" data-key="simpleMode" bindchange="onSwitchChange" />
+    </view>
+  </view>
+
+  <!-- ========== 字号档位：radio 单选 ========== -->
+  <view class="form-card">
+    <view class="form-item form-column">
+      <text class="form-label">正文字号</text>
+      <radio-group class="option-list" bindchange="onFontLevelChange">
+        <label class="option-item {{fontLevel === item.value ? 'active' : ''}}"
+               wx:for="{{fontLevels}}" wx:key="value">
+          <radio value="{{item.value}}" checked="{{fontLevel === item.value}}" color="#1B7F6B" />
+          <text class="option-text">{{item.name}}</text>
+        </label>
+      </radio-group>
+    </view>
+  </view>
+
+  <!-- ========== 实时预览区 ========== -->
+  <view class="section-title">实时预览</view>
+  <view class="preview-card">
+    <view class="preview-head">
+      <text class="preview-emoji">{{previewAid.emoji}}</text>
+      <view class="preview-info">
+        <text class="t-title">{{previewAid.name}}</text>
+        <text class="t-sub">可借 6 台 · 最长可借 30 天</text>
+      </view>
+    </view>
+    <text class="preview-desc">{{previewAid.desc}}</text>
+    <view class="preview-tags">
+      <text class="tag">可折叠</text>
+      <text class="tag tag-warn">免押金</text>
+    </view>
+    <button class="btn-primary preview-btn" bindtap="onPreviewTap">示例按钮 · 点我试试</button>
+  </view>
+
+  <!-- ========== 恢复默认 ========== -->
+  <view class="reset-wrap">
+    <button class="btn-ghost" bindtap="onReset">恢复默认设置</button>
+  </view>
+
+  <!-- ========== 实现说明（答辩与文档可用） ========== -->
+  <view class="card note-card">
+    <text class="t-title">实现说明</text>
+    <view class="note-line"><text class="note-idx">1.</text><text class="note-text">设置项保存在全局数据与本地存储中，重启小程序后依然生效。</text></view>
+    <view class="note-line"><text class="note-idx">2.</text><text class="note-text">开关变化时生成一个样式类，写到页面根节点上，由全局样式表统一覆盖，而不是逐个元素改样式。</text></view>
+    <view class="note-line"><text class="note-idx">3.</text><text class="note-text">通过遍历页面栈通知所有已打开的页面，做到不刷新即时换肤。</text></view>
+  </view>
+
+</view>

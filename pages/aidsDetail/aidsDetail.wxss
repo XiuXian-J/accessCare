@@ -1,0 +1,32 @@
+/* pages/aidsDetail/aidsDetail.wxss —— 辅具详情 */
+
+.detail-swiper { height: 480rpx; }
+.detail-img { width: 100%; height: 480rpx; }
+
+.preview-tip { text-align: center; padding: 12rpx 0 0 0; }
+
+.detail-name { flex: 1; margin-right: 16rpx; }
+.detail-desc { display: block; margin-top: 16rpx; line-height: 1.6; }
+
+.tag-row { display: flex; flex-wrap: wrap; margin-top: 16rpx; }
+.suitable-row { margin-top: 20rpx; }
+
+.param-row { display: flex; margin-top: 16rpx; }
+.param-dot { color: #1B7F6B; font-size: 28rpx; margin-right: 12rpx; }
+.param-text { flex: 1; font-size: 26rpx; color: #555555; line-height: 1.6; }
+
+.footer-space { height: 140rpx; }
+
+.detail-footer {
+  display: flex;
+  align-items: center;
+}
+.fav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 110rpx;
+}
+.fav-icon { font-size: 40rpx; color: #E8A33D; line-height: 1.1; }
+.fav-text { font-size: 20rpx; color: #888888; }
+.borrow-btn { flex: 1; margin-left: 20rpx; }

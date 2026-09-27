@@ -1,0 +1,140 @@
+<!-- pages/borrowApply/borrowApply.wxml —— 辅具借用申请表单 -->
+<view class="page {{a11yClass}}" wx:if="{{aid}}">
+
+  <!-- ========== 待借辅具信息 ========== -->
+  <view class="aid-brief">
+    <view class="cover-box brief-cover">
+      <image class="cover-img" src="{{aid.cover}}" mode="aspectFill"></image>
+      <text class="cover-emoji">{{aid.emoji}}</text>
+    </view>
+    <view class="brief-body">
+      <text class="t-title t-ellipsis">{{aid.name}}</text>
+      <text class="t-sub brief-sub">{{aid.stockText}} · 最长 {{aid.maxDays}} 天</text>
+    </view>
+  </view>
+
+  <!-- ========== 表单主体 ========== -->
+  <view class="form-card">
+
+    <!-- 联系人姓名：input 文本录入 -->
+    <view class="form-item">
+      <text class="form-label required">联系人</text>
+      <input class="form-input"
+             value="{{contactName}}"
+             placeholder="请输入真实姓名"
+             placeholder-class="input-ph"
+             maxlength="12"
+             bindinput="onNameInput" />
+    </view>
+
+    <!-- 手机号：input 数字录入 -->
+    <view class="form-item">
+      <text class="form-label required">手机号</text>
+      <input class="form-input"
+             type="number"
+             value="{{phone}}"
+             placeholder="11 位手机号"
+             placeholder-class="input-ph"
+             maxlength="11"
+             bindinput="onPhoneInput" />
+    </view>
+
+    <!-- 借用时长：radio 单选 -->
+    <view class="form-item form-column">
+      <text class="form-label required">借用时长</text>
+      <radio-group class="option-list" bindchange="onDaysChange">
+        <label class="option-item {{days === item ? 'active' : ''}}"
+               wx:for="{{dayOptions}}" wx:key="*this">
+          <radio value="{{item}}" checked="{{days === item}}" color="#1B7F6B" />
+          <text class="option-text">{{item}} 天</text>
+        </label>
+      </radio-group>
+    </view>
+
+    <!-- 起始日期：picker 日期选择 -->
+    <view class="form-item">
+      <text class="form-label required">起始日期</text>
+      <picker mode="date"
+              value="{{startDate}}"
+              start="{{minDate}}"
+              end="{{maxDate}}"
+              bindchange="onDateChange">
+        <view class="form-value">{{startDate}}</view>
+      </picker>
+    </view>
+
+    <!-- 归还日期：由起始日期和天数自动算出，只读展示 -->
+    <view class="form-item">
+      <text class="form-label">归还日期</text>
+      <view class="form-value t-green">{{endDate}}（共 {{days}} 天）</view>
+    </view>
+
+    <!-- 取件方式：radio 单选 -->
+    <view class="form-item form-column">
+      <text class="form-label required">取件方式</text>
+      <radio-group class="option-list" bindchange="onPickupChange">
+        <label class="option-item {{pickupIndex === index ? 'active' : ''}}"
+               wx:for="{{pickupMethods}}" wx:key="value">
+          <radio value="{{index}}" checked="{{pickupIndex === index}}" color="#1B7F6B" />
+          <text class="option-text">{{item.name}}</text>
+        </label>
+      </radio-group>
+    </view>
+
+    <!-- 随借配件：checkbox 多选 -->
+    <view class="form-item form-column">
+      <text class="form-label">随借配件</text>
+      <checkbox-group class="option-list" bindchange="onAccessoryChange">
+        <label class="option-item" wx:for="{{accessoryOptions}}" wx:key="*this">
+          <checkbox value="{{item}}" color="#1B7F6B" />
+          <text class="option-text">{{item}}</text>
+        </label>
+      </checkbox-group>
+    </view>
+
+    <!-- 地址：input 录入 + 一键定位 -->
+    <view class="form-item">
+      <text class="form-label">接收地址</text>
+      <input class="form-input"
+             value="{{address}}"
+             placeholder="自提可不填"
+             placeholder-class="input-ph"
+             bindinput="onAddressInput" />
+      <view class="locate-btn" bindtap="onChooseLocation">
+        <text class="locate-text">定位</text>
+      </view>
+    </view>
+
+    <!-- 备注：textarea 多行文本 -->
+    <view class="form-item form-column">
+      <text class="form-label">备注说明</text>
+      <textarea class="form-textarea"
+                value="{{remark}}"
+                placeholder="可说明使用场景、特殊需求等，方便服务点准备"
+                placeholder-class="input-ph"
+                maxlength="120"
+                bindinput="onRemarkInput" />
+    </view>
+
+    <!-- 同意协议：switch 开关 -->
+    <view class="switch-row">
+      <view class="agree-box">
+        <text class="agree-title">同意《辅具借用协议》</text>
+        <text class="t-sub">请爱护辅具并按期归还</text>
+      </view>
+      <switch checked="{{agree}}" color="#1B7F6B" bindchange="onAgreeChange" />
+    </view>
+
+  </view>
+
+  <!-- 校验失败提示 -->
+  <view class="form-tip" wx:if="{{tip}}">{{tip}}</view>
+
+  <view class="footer-space"></view>
+
+  <!-- ========== 底部提交按钮 ========== -->
+  <view class="footer-bar">
+    <button class="btn-primary" bindtap="onSubmit">提交借用申请</button>
+  </view>
+
+</view>

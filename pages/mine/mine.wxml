@@ -1,0 +1,101 @@
+<!-- pages/mine/mine.wxml —— 我的 -->
+<view class="page {{a11yClass}}">
+
+  <!-- ========== 用户信息卡：image 组件展示头像 ========== -->
+  <view class="user-card">
+    <view class="avatar">
+      <text class="avatar-text">{{user.avatarText}}</text>
+    </view>
+    <view class="user-info">
+      <text class="user-name">{{user.nickName}}</text>
+      <text class="user-phone">{{user.phone ? user.phone : '点击右侧完善联系方式'}}</text>
+    </view>
+    <view class="edit-btn" bindtap="onEditTap">
+      <text class="edit-btn-text">编辑资料</text>
+    </view>
+  </view>
+
+  <!-- ========== 数据统计 ========== -->
+  <view class="stat-card" bindtap="onStatTap">
+    <view class="stat-item">
+      <text class="stat-num">{{count.all}}</text>
+      <text class="stat-label">全部申请</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{count.pending + count.ongoing}}</text>
+      <text class="stat-label">进行中</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{count.done}}</text>
+      <text class="stat-label">已完成</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{favoriteCount}}</text>
+      <text class="stat-label">收藏</text>
+    </view>
+  </view>
+
+  <!-- ========== 功能入口列表 ========== -->
+  <view class="menu-card">
+    <view class="list-item" wx:for="{{menus}}" wx:key="key"
+          data-path="{{item.path}}" bindtap="onMenuTap">
+      <text class="menu-emoji">{{item.emoji}}</text>
+      <view class="menu-body">
+        <text class="menu-name">{{item.name}}</text>
+        <text class="t-sub">{{item.desc}}</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- ========== 其它操作 ========== -->
+  <view class="menu-card">
+    <view class="list-item" bindtap="onClearCache">
+      <text class="menu-emoji">🧹</text>
+      <view class="menu-body"><text class="menu-name">清除缓存</text></view>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="list-item" bindtap="onAboutTap">
+      <text class="menu-emoji">ℹ️</text>
+      <view class="menu-body"><text class="menu-name">关于本作品</text></view>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="copyright">
+    <text class="t-sub">无碍同行 v1.0.0 · 公益助残</text>
+  </view>
+
+  <!-- ========== 编辑资料弹层：input 录入 + 校验 ========== -->
+  <view class="mask" wx:if="{{showEdit}}" bindtap="onEditCancel"></view>
+  <view class="edit-panel" wx:if="{{showEdit}}">
+    <text class="edit-title">编辑资料</text>
+
+    <view class="form-item">
+      <text class="form-label required">昵称</text>
+      <input class="form-input"
+             value="{{editName}}"
+             placeholder="请输入昵称"
+             placeholder-class="input-ph"
+             maxlength="12"
+             bindinput="onNameInput" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">手机号</text>
+      <input class="form-input"
+             type="number"
+             value="{{editPhone}}"
+             placeholder="用于联系，可暂不填写"
+             placeholder-class="input-ph"
+             maxlength="11"
+             bindinput="onPhoneInput" />
+    </view>
+
+    <view class="edit-actions">
+      <button class="btn-ghost edit-action" bindtap="onEditCancel">取消</button>
+      <button class="btn-primary edit-action" bindtap="onEditSave">保存</button>
+    </view>
+  </view>
+
+</view>

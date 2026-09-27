@@ -1,0 +1,45 @@
+/* pages/settings/settings.wxss —— 无障碍设置 */
+
+.intro-card {
+  padding: 32rpx 24rpx 20rpx 24rpx;
+  background-color: #FFFFFF;
+}
+.intro-title {
+  display: block;
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #1B7F6B;
+  margin-bottom: 12rpx;
+}
+.intro-sub { display: block; font-size: 24rpx; color: #888888; line-height: 1.6; }
+
+.switch-row { display: flex; align-items: center; justify-content: space-between; padding: 26rpx 0; border-bottom: 2rpx solid #F2F2F2; }
+.switch-row:last-child { border-bottom: none; }
+.switch-left { flex: 1; margin-right: 20rpx; }
+.switch-title { display: block; font-size: 30rpx; color: #333333; margin-bottom: 6rpx; }
+
+.option-text { margin-left: 6rpx; }
+
+/* ---------- 预览区 ---------- */
+.preview-card {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 0 20rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+.preview-head { display: flex; align-items: center; }
+.preview-emoji { font-size: 64rpx; margin-right: 20rpx; }
+.preview-info { flex: 1; display: flex; flex-direction: column; }
+.preview-info .t-sub { margin-top: 6rpx; }
+.preview-desc { display: block; font-size: 26rpx; color: #555555; line-height: 1.6; margin: 16rpx 0; }
+.preview-tags { display: flex; margin-bottom: 20rpx; }
+.preview-btn { margin-top: 10rpx; }
+
+.reset-wrap { padding: 30rpx 20rpx 10rpx 20rpx; }
+
+/* ---------- 实现说明 ---------- */
+.note-card { margin-top: 10rpx; }
+.note-line { display: flex; margin-top: 16rpx; }
+.note-idx { font-size: 26rpx; color: #1B7F6B; margin-right: 10rpx; }
+.note-text { flex: 1; font-size: 26rpx; color: #555555; line-height: 1.6; }

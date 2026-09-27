@@ -1,0 +1,76 @@
+<!-- pages/aidsDetail/aidsDetail.wxml —— 辅具详情 -->
+<view class="page {{a11yClass}}" wx:if="{{aid}}">
+
+  <!-- ========== 图片轮播：swiper + 点击预览 ========== -->
+  <swiper class="detail-swiper"
+          indicator-dots="{{true}}"
+          indicator-color="rgba(255,255,255,0.5)"
+          indicator-active-color="#FFFFFF"
+          circular="{{true}}">
+    <swiper-item wx:for="{{aid.images}}" wx:key="*this">
+      <!-- data-index 记录当前是第几张，预览时从这一张开始 -->
+      <image class="detail-img"
+             src="{{item}}"
+             mode="aspectFill"
+             data-index="{{index}}"
+             bindtap="onPreview"></image>
+    </swiper-item>
+  </swiper>
+  <view class="preview-tip">
+    <text class="t-sub">点击图片可全屏查看</text>
+  </view>
+
+  <!-- ========== 名称与基本信息 ========== -->
+  <view class="card">
+    <view class="flex-between">
+      <text class="t-title detail-name">{{aid.name}}</text>
+      <text class="tag {{aid.available ? '' : 'tag-red'}}">{{aid.stockText}}</text>
+    </view>
+    <view class="tag-row">
+      <text class="tag tag-gray">{{aid.categoryText}}</text>
+      <text class="tag tag-gray">可借 {{aid.maxDays}} 天</text>
+      <text class="tag tag-gray">共 {{aid.total}} 台</text>
+    </view>
+    <text class="t-sub detail-desc">{{aid.desc}}</text>
+  </view>
+
+  <!-- ========== 适用人群 ========== -->
+  <view class="card">
+    <text class="t-title">适用人群</text>
+    <view class="tag-row suitable-row">
+      <text class="tag" wx:for="{{aid.suitable}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- ========== 规格参数 ========== -->
+  <view class="card">
+    <text class="t-title">规格参数</text>
+    <view class="param-row" wx:for="{{aid.params}}" wx:key="*this">
+      <text class="param-dot">·</text>
+      <text class="param-text">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- ========== 借用说明 ========== -->
+  <view class="card">
+    <text class="t-title">借用说明</text>
+    <view class="param-row"><text class="param-dot">·</text><text class="param-text">公益免费共享，无需押金</text></view>
+    <view class="param-row"><text class="param-dot">·</text><text class="param-text">支持服务点自提、配送上门与他人代领</text></view>
+    <view class="param-row"><text class="param-dot">·</text><text class="param-text">请在归还日期前送回，逾期可在记录页查看提醒</text></view>
+  </view>
+
+  <!-- 为底部固定条留出空间 -->
+  <view class="footer-space"></view>
+
+  <!-- ========== 底部操作条 ========== -->
+  <view class="footer-bar detail-footer">
+    <view class="fav-btn" bindtap="onFavoriteTap">
+      <text class="fav-icon">{{fav ? '★' : '☆'}}</text>
+      <text class="fav-text">{{fav ? '已收藏' : '收藏'}}</text>
+    </view>
+    <button class="btn-primary borrow-btn" bindtap="onBorrowTap">
+      {{aid.available ? '申请借用' : '暂无库存'}}
+    </button>
+  </view>
+
+</view>

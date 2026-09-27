@@ -1,0 +1,95 @@
+<!-- pages/home/home.wxml —— 首页
+     根节点的 {{a11yClass}} 是无障碍主题的挂载点 -->
+<view class="page {{a11yClass}}">
+
+  <!-- ========== 搜索区：input 输入框 ========== -->
+  <view class="search-bar">
+    <input class="search-input"
+           type="text"
+           value="{{keyword}}"
+           placeholder="搜索辅具名称，如 轮椅 / 助听器"
+           placeholder-class="search-ph"
+           confirm-type="search"
+           bindinput="onKeywordInput"
+           bindconfirm="onSearch" />
+    <view class="search-btn" bindtap="onSearch">
+      <text class="search-btn-text">搜索</text>
+    </view>
+  </view>
+
+  <!-- ========== 轮播区：swiper 轮播组件 ========== -->
+  <swiper class="banner"
+          indicator-dots="{{true}}"
+          indicator-color="rgba(255,255,255,0.4)"
+          indicator-active-color="#FFFFFF"
+          autoplay="{{true}}"
+          interval="4000"
+          duration="500"
+          circular="{{true}}">
+    <swiper-item wx:for="{{banners}}" wx:key="id">
+      <view class="banner-item" data-id="{{item.id}}" data-path="{{item.path}}" data-tab="{{item.tab}}" bindtap="onBannerTap">
+        <image class="banner-img" src="{{item.img}}" mode="aspectFill"></image>
+        <view class="banner-mask">
+          <text class="banner-title">{{item.title}}</text>
+          <text class="banner-sub">{{item.sub}}</text>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- ========== 四宫格快捷入口：button 按钮组件 ========== -->
+  <view class="grid simple-hide">
+    <view class="grid-item" wx:for="{{entries}}" wx:key="key"
+          data-key="{{item.key}}" bindtap="onEntryTap">
+      <view class="grid-icon"><text class="grid-emoji">{{item.emoji}}</text></view>
+      <text class="grid-text">{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- ========== 数据概览：来自本地存储的实时统计 ========== -->
+  <view class="stat-card">
+    <view class="stat-item">
+      <text class="stat-num">{{stat.available}}</text>
+      <text class="stat-label">可借辅具</text>
+    </view>
+    <view class="stat-line"></view>
+    <view class="stat-item">
+      <text class="stat-num">{{stat.running}}</text>
+      <text class="stat-label">进行中</text>
+    </view>
+    <view class="stat-line"></view>
+    <view class="stat-item">
+      <text class="stat-num">{{stat.records}}</text>
+      <text class="stat-label">累计申请</text>
+    </view>
+  </view>
+
+  <!-- ========== 热门推荐：数据绑定 + 列表渲染 ========== -->
+  <view class="flex-between section-row">
+    <view class="section-title">热门辅具</view>
+    <text class="more-text" bindtap="onMoreTap">查看全部 ›</text>
+  </view>
+
+  <view class="media-card" wx:for="{{hotAids}}" wx:key="id"
+        data-id="{{item.id}}" bindtap="onAidTap">
+    <view class="cover-box">
+      <image class="cover-img" src="{{item.cover}}" mode="aspectFill"></image>
+      <text class="cover-emoji">{{item.emoji}}</text>
+    </view>
+    <view class="media-body">
+      <text class="t-title t-ellipsis">{{item.name}}</text>
+      <text class="t-sub t-clamp2 media-desc">{{item.desc}}</text>
+      <view class="media-foot">
+        <text class="tag">{{item.stockText}}</text>
+        <text class="t-sub">最长可借 {{item.maxDays}} 天</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 数据为空时的兜底提示 -->
+  <view class="empty" wx:if="{{hotAids.length === 0}}">
+    <text class="empty-icon">📭</text>
+    <text class="empty-text">暂无推荐辅具</text>
+  </view>
+
+</view>

@@ -1,0 +1,11 @@
+/* pages/feedback/feedback.wxss —— 意见反馈 */
+
+.intro-card { padding: 32rpx 24rpx 20rpx 24rpx; background-color: #FFFFFF; }
+.intro-title { display: block; font-size: 34rpx; font-weight: bold; color: #1B7F6B; margin-bottom: 12rpx; }
+.intro-sub { display: block; font-size: 24rpx; color: #888888; line-height: 1.6; }
+
+.input-ph { color: #BBBBBB; font-size: 26rpx; }
+.option-text { margin-left: 6rpx; }
+.word-count { display: block; text-align: right; font-size: 22rpx; color: #AAAAAA; margin-top: 8rpx; }
+
+.footer-space { height: 160rpx; }

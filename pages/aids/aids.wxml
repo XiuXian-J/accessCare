@@ -1,0 +1,76 @@
+<!-- pages/aids/aids.wxml —— 辅具库 -->
+<view class="page {{a11yClass}}">
+
+  <!-- ========== 搜索框：input 组件 ========== -->
+  <view class="search-bar">
+    <input class="search-input"
+           value="{{keyword}}"
+           placeholder="输入辅具名称 / 适用人群"
+           placeholder-class="search-ph"
+           confirm-type="search"
+           bindinput="onKeywordInput"
+           bindconfirm="onSearch" />
+    <view class="search-btn" bindtap="onSearch"><text class="search-btn-text">搜索</text></view>
+  </view>
+
+  <!-- ========== 分类横滑：scroll-view 横向滚动 ========== -->
+  <scroll-view class="cat-scroll" scroll-x="{{true}}" enable-flex="{{true}}" show-scrollbar="{{false}}">
+    <view class="cat-item {{catKey === item.key ? 'cat-active' : ''}}"
+          wx:for="{{categories}}"
+          wx:key="key"
+          data-key="{{item.key}}"
+          bindtap="onCategoryTap">
+      <text class="cat-emoji">{{item.emoji}}</text>
+      <text class="cat-name">{{item.name}}</text>
+    </view>
+  </scroll-view>
+
+  <!-- ========== 筛选条：switch 开关 + radio 单选 ========== -->
+  <view class="filter-card">
+    <view class="filter-row">
+      <text class="filter-count">共 {{list.length}} 件辅具</text>
+      <view class="filter-right">
+        <text class="t-sub">只看可借</text>
+        <switch class="filter-switch"
+                checked="{{onlyAvailable}}"
+                color="#1B7F6B"
+                bindchange="onSwitchChange" />
+      </view>
+    </view>
+    <view class="filter-row simple-hide">
+      <radio-group class="sort-group" bindchange="onSortChange">
+        <label class="sort-item" wx:for="{{sorts}}" wx:key="value">
+          <radio value="{{item.value}}" checked="{{sortValue === item.value}}" color="#1B7F6B" />
+          <text class="sort-text">{{item.name}}</text>
+        </label>
+      </radio-group>
+      <text class="reset-text" bindtap="onResetFilter">重置</text>
+    </view>
+  </view>
+
+  <!-- ========== 辅具列表：数据绑定 + 列表渲染 ========== -->
+  <view class="media-card" wx:for="{{list}}" wx:key="id"
+        data-id="{{item.id}}" bindtap="onAidTap">
+    <view class="cover-box">
+      <image class="cover-img" src="{{item.cover}}" mode="aspectFill"></image>
+      <text class="cover-emoji">{{item.emoji}}</text>
+    </view>
+    <view class="media-body">
+      <text class="t-title t-ellipsis">{{item.name}}</text>
+      <text class="t-sub t-clamp2 list-desc">{{item.desc}}</text>
+      <view class="tag-row">
+        <text class="tag" wx:if="{{item.stock > 0}}">{{item.stockText}}</text>
+        <text class="tag tag-red" wx:else>暂无库存</text>
+        <text class="tag tag-gray">最长 {{item.maxDays}} 天</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ========== 空状态 ========== -->
+  <view class="empty" wx:if="{{list.length === 0}}">
+    <text class="empty-icon">🔍</text>
+    <text class="empty-text">没有找到符合条件的辅具</text>
+    <button class="btn-ghost empty-btn" bindtap="onResetFilter">清空筛选条件</button>
+  </view>
+
+</view>

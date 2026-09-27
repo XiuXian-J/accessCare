@@ -1,0 +1,116 @@
+<!-- pages/myRecords/myRecords.wxml —— 我的记录（状态机 + swiper 页签） -->
+<view class="page {{a11yClass}}">
+
+  <!-- ========== 五状态页签：横向滚动 ========== -->
+  <scroll-view class="tab-bar" scroll-x="{{true}}" enable-flex="{{true}}" show-scrollbar="{{false}}">
+    <view class="tab-item {{currentTab === index ? 'tab-active' : ''}}"
+          wx:for="{{tabs}}"
+          wx:key="key"
+          data-index="{{index}}"
+          bindtap="onTabTap">
+      <text class="tab-text">{{item.name}}</text>
+      <text class="tab-count">{{counts[index]}}</text>
+      <view class="tab-underline" wx:if="{{currentTab === index}}"></view>
+    </view>
+  </scroll-view>
+
+  <!-- ========== 内容区：五个页签各占一屏 ========== -->
+  <swiper class="record-swiper"
+          style="height: {{swiperHeight}}rpx;"
+          current="{{currentTab}}"
+          duration="300"
+          bindchange="onSwiperChange">
+
+    <swiper-item wx:for="{{tabLists}}" wx:key="key" wx:for-item="tab">
+      <scroll-view scroll-y="{{true}}" class="record-scroll">
+
+        <!-- ---------- 记录卡片 ---------- -->
+        <view class="record-card" wx:for="{{tab.list}}" wx:key="id" wx:for-item="rec">
+
+          <!-- 标题行：名称 + 状态徽标 -->
+          <view class="flex-between">
+            <view class="rec-title-box">
+              <text class="rec-emoji">{{rec.emoji}}</text>
+              <text class="t-title t-ellipsis rec-name">{{rec.refName}}</text>
+            </view>
+            <text class="status {{rec.statusCls}}">{{rec.statusName}}</text>
+          </view>
+
+          <!-- 基本信息 -->
+          <view class="rec-line">
+            <text class="t-sub">{{rec.typeText}} · 单号 {{rec.id}}</text>
+          </view>
+          <view class="rec-line">
+            <text class="t-sub">时间：{{rec.timeText}}</text>
+          </view>
+          <view class="rec-line">
+            <text class="t-sub">联系人：{{rec.contactName}} · {{rec.phone}}</text>
+          </view>
+          <view class="rec-line" wx:if="{{rec.isAid && rec.accessories.length > 0}}">
+            <text class="t-sub">随借配件：{{rec.accessories}}</text>
+          </view>
+          <view class="rec-line" wx:if="{{!rec.isAid && rec.needs.length > 0}}">
+            <text class="t-sub">无障碍需求：{{rec.needs}}</text>
+          </view>
+          <view class="rec-line" wx:if="{{rec.address}}">
+            <text class="t-sub">接收地址：{{rec.address}}</text>
+          </view>
+          <view class="rec-line" wx:if="{{rec.scene}}">
+            <text class="t-sub">服务场景：{{rec.scene}}</text>
+          </view>
+          <view class="rec-line" wx:if="{{rec.remark}}">
+            <text class="t-sub">备注：{{rec.remark}}</text>
+          </view>
+
+          <!-- 最新进度：点击展开完整时间轴 -->
+          <view class="rec-note" bindtap="onToggleTimeline" data-id="{{rec.id}}">
+            <text class="rec-note-text">{{rec.lastNote}}</text>
+            <text class="rec-note-arrow">{{expandedId === rec.id ? '收起 ▲' : '详情 ▼'}}</text>
+          </view>
+
+          <!-- 时间轴：记录每一次状态流转 -->
+          <view class="timeline" wx:if="{{expandedId === rec.id}}">
+            <view class="timeline-item" wx:for="{{rec.timeline}}" wx:key="time" wx:for-item="node">
+              <view class="timeline-dot"></view>
+              <view class="timeline-body">
+                <text class="timeline-text">{{node.text}}</text>
+                <text class="t-sub">{{node.time}}</text>
+              </view>
+            </view>
+          </view>
+
+          <!-- ---------- 状态机操作按钮 ---------- -->
+          <view class="rec-actions">
+            <button class="btn-mini" wx:if="{{rec.canAudit}}" bindtap="onAudit" data-id="{{rec.id}}">
+              {{rec.isAid ? '审核通过' : '确认安排'}}
+            </button>
+            <button class="btn-mini" wx:if="{{rec.canReturn}}" bindtap="onFinish" data-id="{{rec.id}}">
+              {{rec.finishText}}
+            </button>
+            <button class="btn-danger" wx:if="{{rec.canCancel}}" bindtap="onCancel" data-id="{{rec.id}}">
+              取消申请
+            </button>
+            <button class="btn-danger" wx:if="{{rec.canDelete}}" bindtap="onDelete" data-id="{{rec.id}}">
+              删除记录
+            </button>
+            <button class="btn-danger" wx:if="{{rec.isAid}}" bindtap="onGoDetail" data-refid="{{rec.refId}}">
+              查看辅具
+            </button>
+          </view>
+
+        </view>
+
+        <!-- ---------- 空状态 ---------- -->
+        <view class="empty" wx:if="{{tab.list.length === 0}}">
+          <text class="empty-icon">📭</text>
+          <text class="empty-text">{{tab.name}}暂无记录</text>
+          <button class="btn-ghost empty-btn" bindtap="onGoBorrow">去借一件辅具</button>
+        </view>
+
+        <view class="scroll-pad"></view>
+      </scroll-view>
+    </swiper-item>
+
+  </swiper>
+
+</view>

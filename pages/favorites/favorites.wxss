@@ -1,0 +1,5 @@
+/* pages/favorites/favorites.wxss —— 我的收藏 */
+
+.count-bar { padding: 20rpx 24rpx 0 24rpx; }
+.fav-desc { margin: 10rpx 0; min-height: 60rpx; }
+.remove-text { font-size: 24rpx; color: #D9534F; }

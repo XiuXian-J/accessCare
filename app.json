@@ -1,0 +1,58 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/aids/aids",
+    "pages/service/service",
+    "pages/mine/mine",
+    "pages/aidsDetail/aidsDetail",
+    "pages/borrowApply/borrowApply",
+    "pages/serviceBooking/serviceBooking",
+    "pages/myRecords/myRecords",
+    "pages/favorites/favorites",
+    "pages/settings/settings",
+    "pages/feedback/feedback",
+    "pages/knowledge/knowledge"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1B7F6B",
+    "navigationBarTitleText": "无碍同行",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F5F7F6",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#1B7F6B",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/bar/home-1.png",
+        "selectedIconPath": "images/bar/home-0.png"
+      },
+      {
+        "pagePath": "pages/aids/aids",
+        "text": "辅具库",
+        "iconPath": "images/bar/aids-1.png",
+        "selectedIconPath": "images/bar/aids-0.png"
+      },
+      {
+        "pagePath": "pages/service/service",
+        "text": "手语服务",
+        "iconPath": "images/bar/service-1.png",
+        "selectedIconPath": "images/bar/service-0.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/bar/mine-1.png",
+        "selectedIconPath": "images/bar/mine-0.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

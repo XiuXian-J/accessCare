@@ -1,0 +1,84 @@
+/* pages/myRecords/myRecords.wxss —— 我的记录 */
+
+/* ---------- 页签（横向滚动，五屏内容） ---------- */
+.tab-bar {
+  white-space: nowrap;
+  background-color: #FFFFFF;
+  width: 100%;
+}
+.tab-item {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  padding: 24rpx 26rpx;
+  text-align: center;
+}
+.tab-text { font-size: 27rpx; color: #666666; }
+.tab-count { font-size: 20rpx; color: #BBBBBB; margin-left: 6rpx; }
+.tab-active .tab-text { color: #1B7F6B; font-weight: bold; }
+.tab-active .tab-count { color: #1B7F6B; }
+.tab-underline {
+  position: absolute;
+  left: 50%;
+  bottom: 6rpx;
+  margin-left: -28rpx;
+  width: 56rpx;
+  height: 6rpx;
+  border-radius: 3rpx;
+  background-color: #1B7F6B;
+}
+
+/* ---------- 内容区 ---------- */
+.record-swiper { width: 100%; }
+.record-scroll { height: 100%; }
+.scroll-pad { height: 40rpx; }
+
+/* ---------- 记录卡片 ---------- */
+.record-card {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+.rec-title-box { display: flex; align-items: center; flex: 1; margin-right: 16rpx; }
+.rec-emoji { font-size: 34rpx; margin-right: 10rpx; }
+.rec-name { flex: 1; }
+.rec-line { margin-top: 10rpx; }
+.rec-line .t-sub { line-height: 1.5; }
+
+/* 最新进度条 */
+.rec-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16rpx;
+  padding: 14rpx 20rpx;
+  border-radius: 10rpx;
+  background-color: #F5F7F6;
+}
+.rec-note-text { flex: 1; font-size: 24rpx; color: #666666; }
+.rec-note-arrow { font-size: 24rpx; color: #1B7F6B; }
+
+/* ---------- 时间轴 ---------- */
+.timeline { margin-top: 16rpx; padding-left: 12rpx; }
+.timeline-item { display: flex; padding: 10rpx 0; }
+.timeline-dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background-color: #1B7F6B;
+  margin-top: 12rpx;
+  flex-shrink: 0;
+}
+.timeline-body { flex: 1; margin-left: 16rpx; }
+.timeline-text { display: block; font-size: 24rpx; color: #444444; margin-bottom: 4rpx; }
+
+/* ---------- 操作按钮 ---------- */
+.rec-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-top: 20rpx;
+  gap: 16rpx;
+}

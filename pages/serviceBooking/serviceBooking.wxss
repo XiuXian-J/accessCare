@@ -1,0 +1,23 @@
+/* pages/serviceBooking/serviceBooking.wxss —— 服务预约表单 */
+
+.svc-brief {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  background-color: #FFFFFF;
+  margin-bottom: 20rpx;
+}
+.brief-cover { width: 140rpx; height: 140rpx; }
+.brief-body { flex: 1; margin-left: 20rpx; overflow: hidden; }
+.brief-sub { display: block; margin-top: 10rpx; }
+
+.input-ph { color: #BBBBBB; font-size: 26rpx; }
+.option-text { margin-left: 6rpx; }
+
+.form-textarea.short { min-height: 110rpx; }
+
+.agree-box { flex: 1; display: flex; flex-direction: column; }
+.agree-title { font-size: 28rpx; color: #333333; }
+.agree-box .t-sub { margin-top: 4rpx; }
+
+.footer-space { height: 160rpx; }

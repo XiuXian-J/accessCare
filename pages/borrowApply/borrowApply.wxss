@@ -1,0 +1,33 @@
+/* pages/borrowApply/borrowApply.wxss —— 借用申请表单 */
+
+/* ---------- 顶部辅具信息 ---------- */
+.aid-brief {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  background-color: #FFFFFF;
+  margin-bottom: 20rpx;
+}
+.brief-cover { width: 140rpx; height: 140rpx; }
+.brief-body { flex: 1; margin-left: 20rpx; overflow: hidden; }
+.brief-sub { display: block; margin-top: 10rpx; }
+
+/* ---------- 表单 ---------- */
+.input-ph { color: #BBBBBB; font-size: 26rpx; }
+.option-text { margin-left: 6rpx; }
+
+/* 地址右侧的定位小按钮 */
+.locate-btn {
+  margin-left: 16rpx;
+  padding: 6rpx 20rpx;
+  border-radius: 24rpx;
+  background-color: #EAF5F2;
+}
+.locate-text { font-size: 24rpx; color: #1B7F6B; }
+
+/* 协议开关行 */
+.agree-box { flex: 1; display: flex; flex-direction: column; }
+.agree-title { font-size: 28rpx; color: #333333; }
+.agree-box .t-sub { margin-top: 4rpx; }
+
+.footer-space { height: 160rpx; }

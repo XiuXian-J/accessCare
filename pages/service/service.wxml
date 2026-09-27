@@ -1,0 +1,89 @@
+<!-- pages/service/service.wxml —— 手语服务（swiper 页签） -->
+<view class="page {{a11yClass}}">
+
+  <!-- ========== 页签标题：点击切换内容 ========== -->
+  <view class="tab-bar">
+    <view class="tab-item {{currentTab === index ? 'tab-active' : ''}}"
+          wx:for="{{tabs}}"
+          wx:key="*this"
+          data-index="{{index}}"
+          bindtap="onTabTap">
+      <text class="tab-text">{{item}}</text>
+      <view class="tab-underline" wx:if="{{currentTab === index}}"></view>
+    </view>
+  </view>
+
+  <!-- ========== 内容区：swiper 承载两屏内容 ========== -->
+  <swiper class="tab-swiper"
+          style="height: {{swiperHeight}}rpx;"
+          current="{{currentTab}}"
+          duration="300"
+          bindchange="onSwiperChange">
+
+    <!-- ---------- 第 1 屏：服务项目列表 ---------- -->
+    <swiper-item>
+      <scroll-view scroll-y="{{true}}" class="tab-scroll">
+        <view class="service-card" wx:for="{{services}}" wx:key="id"
+              data-id="{{item.id}}" bindtap="onBookTap">
+          <view class="cover-box service-cover">
+            <image class="cover-img" src="{{item.cover}}" mode="aspectFill"></image>
+            <text class="cover-emoji">{{item.emoji}}</text>
+          </view>
+          <view class="media-body">
+            <view class="flex-between">
+              <text class="t-title">{{item.name}}</text>
+              <text class="t-green service-price">{{item.priceText}}</text>
+            </view>
+            <text class="t-sub t-clamp2 service-desc">{{item.desc}}</text>
+            <view class="tag-row">
+              <text class="tag" wx:for="{{item.scenes}}" wx:for-item="scene" wx:key="*this">{{scene}}</text>
+            </view>
+            <view class="flex-between service-foot">
+              <text class="t-sub">{{item.durationText}} · 每日 {{item.quota}} 个名额</text>
+              <text class="book-link">立即预约 ›</text>
+            </view>
+          </view>
+        </view>
+        <view class="scroll-pad"></view>
+      </scroll-view>
+    </swiper-item>
+
+    <!-- ---------- 第 2 屏：我的预约 ---------- -->
+    <swiper-item>
+      <scroll-view scroll-y="{{true}}" class="tab-scroll">
+        <view class="record-card" wx:for="{{myBookings}}" wx:key="id">
+          <view class="flex-between">
+            <text class="t-title t-ellipsis">{{item.refName}}</text>
+            <text class="status {{item.statusCls}}">{{item.statusName}}</text>
+          </view>
+          <view class="record-line">
+            <text class="t-sub">预约时间：{{item.bookingDate}} {{item.timeSlot}}</text>
+          </view>
+          <view class="record-line">
+            <text class="t-sub">联系人：{{item.contactName}} · {{item.phone}}</text>
+          </view>
+          <view class="record-line" wx:if="{{item.needs.length > 0}}">
+            <text class="t-sub">无障碍需求：{{item.needs}}</text>
+          </view>
+          <view class="record-line">
+            <text class="t-sub">申请单号：{{item.id}}</text>
+          </view>
+        </view>
+
+        <!-- 空状态 -->
+        <view class="empty" wx:if="{{myBookings.length === 0}}">
+          <text class="empty-icon">🗓️</text>
+          <text class="empty-text">还没有预约记录</text>
+          <button class="btn-ghost empty-btn" bindtap="onGoBook">去看看服务项目</button>
+        </view>
+
+        <view class="more-record" wx:if="{{myBookings.length > 0}}" bindtap="onRecordTap">
+          <text class="more-record-text">前往「我的记录」管理预约状态 ›</text>
+        </view>
+        <view class="scroll-pad"></view>
+      </scroll-view>
+    </swiper-item>
+
+  </swiper>
+
+</view>

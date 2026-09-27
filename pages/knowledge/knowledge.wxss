@@ -1,0 +1,47 @@
+/* pages/knowledge/knowledge.wxss —— 无障碍科普 */
+
+/* ---------- 分组横滑 ---------- */
+.group-bar {
+  white-space: nowrap;
+  background-color: #FFFFFF;
+  padding: 18rpx 12rpx;
+}
+.group-item {
+  display: inline-block;
+  vertical-align: top;
+  padding: 12rpx 26rpx;
+  margin: 0 8rpx;
+  border-radius: 30rpx;
+  background-color: #F5F7F6;
+}
+.group-active { background-color: #EAF5F2; }
+.group-emoji { font-size: 26rpx; margin-right: 6rpx; }
+.group-name { font-size: 26rpx; color: #555555; }
+.group-active .group-name { color: #1B7F6B; font-weight: bold; }
+
+/* ---------- 问答列表（竖向 scroll-view） ---------- */
+.know-scroll {
+  height: calc(100vh - 130rpx);
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+.know-item {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 26rpx 24rpx;
+  margin-top: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+.know-head { display: flex; align-items: center; justify-content: space-between; }
+.know-q { flex: 1; font-size: 28rpx; color: #222222; font-weight: bold; margin-right: 20rpx; }
+.know-arrow { font-size: 36rpx; color: #1B7F6B; line-height: 1; }
+
+.know-body {
+  margin-top: 18rpx;
+  padding-top: 18rpx;
+  border-top: 2rpx solid #F2F2F2;
+}
+.know-a { font-size: 26rpx; color: #555555; line-height: 1.8; }
+
+.know-foot { padding: 40rpx 20rpx 60rpx 20rpx; text-align: center; }

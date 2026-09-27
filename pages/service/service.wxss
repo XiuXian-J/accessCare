@@ -1,0 +1,67 @@
+/* pages/service/service.wxss —— 手语服务样式 */
+
+/* ---------- 页签标题 ---------- */
+.tab-bar {
+  display: flex;
+  background-color: #FFFFFF;
+}
+.tab-item {
+  flex: 1;
+  height: 88rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.tab-text { font-size: 28rpx; color: #666666; }
+.tab-active .tab-text { color: #1B7F6B; font-weight: bold; }
+.tab-underline {
+  position: absolute;
+  bottom: 8rpx;
+  width: 56rpx;
+  height: 6rpx;
+  border-radius: 3rpx;
+  background-color: #1B7F6B;
+}
+
+/* ---------- 内容区 ---------- */
+.tab-swiper { width: 100%; }
+.tab-scroll { height: 100%; }
+.scroll-pad { height: 40rpx; }
+
+/* ---------- 服务卡片 ---------- */
+.service-card {
+  display: flex;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+.service-cover { width: 180rpx; height: 180rpx; }
+.service-price { font-size: 26rpx; }
+.service-desc { margin: 10rpx 0; min-height: 60rpx; }
+.service-foot { margin-top: 12rpx; }
+.book-link { font-size: 26rpx; color: #1B7F6B; }
+
+/* ---------- 预约记录卡片 ---------- */
+.record-card {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+.record-line { margin-top: 10rpx; }
+
+.more-record {
+  margin: 0 20rpx 20rpx 20rpx;
+  padding: 24rpx;
+  background-color: #EAF5F2;
+  border-radius: 16rpx;
+  text-align: center;
+}
+.more-record-text { font-size: 26rpx; color: #1B7F6B; }
+
+.tag-row { display: flex; flex-wrap: wrap; margin-top: 6rpx; }

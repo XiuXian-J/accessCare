@@ -1,0 +1,99 @@
+/* pages/home/home.wxss —— 首页样式（尺寸统一使用 rpx） */
+
+/* ---------- 搜索区 ---------- */
+.search-bar {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 24rpx;
+  background-color: #1B7F6B;
+}
+.search-input {
+  flex: 1;
+  height: 68rpx;
+  background-color: #FFFFFF;
+  border-radius: 34rpx;
+  padding: 0 28rpx;
+  font-size: 26rpx;
+  color: #333333;
+}
+.search-ph { color: #AAAAAA; font-size: 26rpx; }
+.search-btn {
+  margin-left: 16rpx;
+  padding: 0 26rpx;
+  height: 68rpx;
+  border-radius: 34rpx;
+  background-color: rgba(255, 255, 255, 0.22);
+  display: flex;
+  align-items: center;
+}
+.search-btn-text { color: #FFFFFF; font-size: 26rpx; }
+
+/* ---------- 轮播 ---------- */
+.banner { height: 340rpx; }
+.banner-item { position: relative; width: 100%; height: 340rpx; }
+.banner-img { width: 100%; height: 340rpx; }
+.banner-mask {
+  position: absolute;
+  left: 40rpx;
+  top: 90rpx;
+  right: 40rpx;
+}
+.banner-title {
+  display: block;
+  color: #FFFFFF;
+  font-size: 44rpx;
+  font-weight: bold;
+}
+.banner-sub {
+  display: block;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 24rpx;
+  margin-top: 12rpx;
+}
+
+/* ---------- 四宫格入口 ---------- */
+.grid {
+  display: flex;
+  margin: 0 20rpx;
+  padding: 28rpx 0;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  margin-top: 20rpx;
+}
+.grid-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.grid-icon {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background-color: #EAF5F2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.grid-emoji { font-size: 44rpx; }
+.grid-text { font-size: 24rpx; color: #444444; margin-top: 12rpx; }
+
+/* ---------- 数据概览卡 ---------- */
+.stat-card {
+  display: flex;
+  align-items: center;
+  margin: 20rpx;
+  padding: 28rpx 0;
+  border-radius: 16rpx;
+  background: linear-gradient(135deg, #1B7F6B, #2A9D82);
+}
+.stat-item { flex: 1; display: flex; flex-direction: column; align-items: center; }
+.stat-num { color: #FFFFFF; font-size: 44rpx; font-weight: bold; }
+.stat-label { color: rgba(255, 255, 255, 0.85); font-size: 22rpx; margin-top: 6rpx; }
+.stat-line { width: 2rpx; height: 56rpx; background-color: rgba(255, 255, 255, 0.3); }
+
+/* ---------- 热门推荐 ---------- */
+.section-row { display: flex; align-items: center; justify-content: space-between; }
+.more-text { font-size: 24rpx; color: #1B7F6B; margin-right: 24rpx; }
+.media-desc { margin: 10rpx 0; min-height: 60rpx; }
+.media-foot { display: flex; align-items: center; justify-content: space-between; }

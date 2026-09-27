@@ -1,0 +1,128 @@
+<!-- pages/serviceBooking/serviceBooking.wxml —— 手语服务预约表单 -->
+<view class="page {{a11yClass}}" wx:if="{{service}}">
+
+  <!-- ========== 服务信息 ========== -->
+  <view class="svc-brief">
+    <view class="cover-box brief-cover">
+      <image class="cover-img" src="{{service.cover}}" mode="aspectFill"></image>
+      <text class="cover-emoji">{{service.emoji}}</text>
+    </view>
+    <view class="brief-body">
+      <text class="t-title t-ellipsis">{{service.name}}</text>
+      <text class="t-sub brief-sub">{{service.priceText}} · 约 {{service.duration}} 分钟</text>
+    </view>
+  </view>
+
+  <view class="form-card">
+
+    <!-- 联系人 -->
+    <view class="form-item">
+      <text class="form-label required">联系人</text>
+      <input class="form-input"
+             value="{{contactName}}"
+             placeholder="请输入真实姓名"
+             placeholder-class="input-ph"
+             maxlength="12"
+             bindinput="onNameInput" />
+    </view>
+
+    <!-- 手机号 -->
+    <view class="form-item">
+      <text class="form-label required">手机号</text>
+      <input class="form-input"
+             type="number"
+             value="{{phone}}"
+             placeholder="11 位手机号"
+             placeholder-class="input-ph"
+             maxlength="11"
+             bindinput="onPhoneInput" />
+    </view>
+
+    <!-- 服务类型：radio 单选 -->
+    <view class="form-item form-column">
+      <text class="form-label required">服务类型</text>
+      <radio-group class="option-list" bindchange="onTypeChange">
+        <label class="option-item {{serviceType === item.value ? 'active' : ''}}"
+               wx:for="{{serviceTypes}}" wx:key="value">
+          <radio value="{{item.value}}" checked="{{serviceType === item.value}}" color="#1B7F6B" />
+          <text class="option-text">{{item.name}}</text>
+        </label>
+      </radio-group>
+    </view>
+
+    <!-- 预约日期：picker -->
+    <view class="form-item">
+      <text class="form-label required">预约日期</text>
+      <picker mode="date"
+              value="{{bookingDate}}"
+              start="{{minDate}}"
+              end="{{maxDate}}"
+              bindchange="onDateChange">
+        <view class="form-value">{{bookingDate}}</view>
+      </picker>
+    </view>
+
+    <!-- 预约时段：picker 选择器 -->
+    <view class="form-item">
+      <text class="form-label required">预约时段</text>
+      <picker mode="selector"
+              range="{{timeSlots}}"
+              value="{{slotIndex}}"
+              bindchange="onSlotChange">
+        <view class="form-value">{{timeSlot}}</view>
+      </picker>
+    </view>
+
+    <!-- 无障碍配套需求：checkbox 多选（选项由服务自身决定） -->
+    <view class="form-item form-column">
+      <text class="form-label">无障碍需求</text>
+      <checkbox-group class="option-list" bindchange="onNeedChange">
+        <label class="option-item" wx:for="{{needOptions}}" wx:key="*this">
+          <checkbox value="{{item}}" color="#1B7F6B" />
+          <text class="option-text">{{item}}</text>
+        </label>
+      </checkbox-group>
+    </view>
+
+    <!-- 服务场景：textarea -->
+    <view class="form-item form-column">
+      <text class="form-label required">服务场景</text>
+      <textarea class="form-textarea"
+                value="{{scene}}"
+                placeholder="如：9月28日上午到市第一医院陪同就诊，需向医生说明既往病史"
+                placeholder-class="input-ph"
+                maxlength="120"
+                bindinput="onSceneInput" />
+    </view>
+
+    <!-- 补充说明 -->
+    <view class="form-item form-column">
+      <text class="form-label">补充说明</text>
+      <textarea class="form-textarea short"
+                value="{{remark}}"
+                placeholder="其它需要提前告知的信息（选填）"
+                placeholder-class="input-ph"
+                maxlength="80"
+                bindinput="onRemarkInput" />
+    </view>
+
+    <!-- 短信提醒：switch -->
+    <view class="switch-row">
+      <view class="agree-box">
+        <text class="agree-title">短信提醒</text>
+        <text class="t-sub">预约确认后发送短信通知</text>
+      </view>
+      <switch checked="{{needSms}}" color="#1B7F6B" bindchange="onSmsChange" />
+    </view>
+
+  </view>
+
+  <view class="form-tip" wx:if="{{tip}}">{{tip}}</view>
+
+  <view class="footer-space"></view>
+
+  <view class="footer-bar">
+    <button class="btn-primary" bindtap="onSubmit">提交预约</button>
+  </view>
+
+</view>

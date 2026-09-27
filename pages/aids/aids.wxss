@@ -1,0 +1,76 @@
+/* pages/aids/aids.wxss —— 辅具库样式 */
+
+/* ---------- 搜索 ---------- */
+.search-bar {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 24rpx;
+  background-color: #1B7F6B;
+}
+.search-input {
+  flex: 1;
+  height: 68rpx;
+  background-color: #FFFFFF;
+  border-radius: 34rpx;
+  padding: 0 28rpx;
+  font-size: 26rpx;
+  color: #333333;
+}
+.search-ph { color: #AAAAAA; font-size: 26rpx; }
+.search-btn {
+  margin-left: 16rpx;
+  padding: 0 26rpx;
+  height: 68rpx;
+  border-radius: 34rpx;
+  background-color: rgba(255, 255, 255, 0.22);
+  display: flex;
+  align-items: center;
+}
+.search-btn-text { color: #FFFFFF; font-size: 26rpx; }
+
+/* ---------- 分类横滑（scroll-x 三要素：white-space + inline-block + scroll-x） ---------- */
+.cat-scroll {
+  white-space: nowrap;
+  background-color: #FFFFFF;
+  padding: 20rpx 12rpx;
+}
+.cat-item {
+  display: inline-block;
+  vertical-align: top;
+  min-width: 118rpx;
+  padding: 12rpx 18rpx;
+  margin: 0 8rpx;
+  border-radius: 14rpx;
+  background-color: #F5F7F6;
+  text-align: center;
+}
+.cat-active { background-color: #EAF5F2; }
+.cat-emoji { display: block; font-size: 36rpx; }
+.cat-name { display: block; font-size: 22rpx; color: #555555; margin-top: 6rpx; }
+.cat-active .cat-name { color: #1B7F6B; font-weight: bold; }
+
+/* ---------- 筛选条 ---------- */
+.filter-card {
+  background-color: #FFFFFF;
+  margin: 20rpx 20rpx 0 20rpx;
+  border-radius: 16rpx;
+  padding: 8rpx 24rpx;
+}
+.filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 84rpx;
+}
+.filter-count { font-size: 26rpx; color: #666666; }
+.filter-right { display: flex; align-items: center; }
+.filter-switch { transform: scale(0.8); margin-left: 6rpx; }
+.sort-group { display: flex; align-items: center; }
+.sort-item { display: flex; align-items: center; margin-right: 30rpx; }
+.sort-item radio { transform: scale(0.8); }
+.sort-text { font-size: 24rpx; color: #666666; }
+.reset-text { font-size: 24rpx; color: #1B7F6B; }
+
+/* ---------- 列表 ---------- */
+.list-desc { margin: 8rpx 0; min-height: 56rpx; }
+.tag-row { display: flex; align-items: center; margin-top: 8rpx; }

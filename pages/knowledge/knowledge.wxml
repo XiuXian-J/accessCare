@@ -1,0 +1,40 @@
+<!-- pages/knowledge/knowledge.wxml —— 无障碍科普 -->
+<view class="page {{a11yClass}}">
+
+  <!-- ========== 分组切换 ========== -->
+  <scroll-view class="group-bar" scroll-x="{{true}}" enable-flex="{{true}}" show-scrollbar="{{false}}">
+    <view class="group-item {{currentGroup === index ? 'group-active' : ''}}"
+          wx:for="{{groups}}"
+          wx:key="key"
+          data-index="{{index}}"
+          bindtap="onGroupTap">
+      <text class="group-emoji">{{item.emoji}}</text>
+      <text class="group-name">{{item.name}}</text>
+    </view>
+  </scroll-view>
+
+  <!-- ========== 问答列表：scroll-view 竖向滚动 + 点击展开收起 ========== -->
+  <scroll-view class="know-scroll" scroll-y="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}">
+
+    <view class="know-item"
+          wx:for="{{groups[currentGroup].items}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onItemTap">
+      <view class="know-head">
+        <text class="know-q">{{item.q}}</text>
+        <text class="know-arrow">{{openId === item.id ? '−' : '+'}}</text>
+      </view>
+      <!-- wx:if 控制答案的显示与隐藏 -->
+      <view class="know-body" wx:if="{{openId === item.id}}">
+        <text class="know-a">{{item.a}}</text>
+      </view>
+    </view>
+
+    <view class="know-foot">
+      <text class="t-sub">内容整理自公开的无障碍服务常识，仅供学习参考。</text>
+    </view>
+
+  </scroll-view>
+
+</view>

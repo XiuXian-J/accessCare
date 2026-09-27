@@ -1,0 +1,55 @@
+<!-- pages/feedback/feedback.wxml —— 意见反馈表单 -->
+<view class="page {{a11yClass}}">
+
+  <view class="intro-card">
+    <text class="intro-title">你的建议很重要</text>
+    <text class="intro-sub">已收到 {{count}} 条反馈，每一条我们都会认真阅读。</text>
+  </view>
+
+  <view class="form-card">
+
+    <!-- 满意度：radio 单选 -->
+    <view class="form-item form-column">
+      <text class="form-label required">整体满意度</text>
+      <radio-group class="option-list" bindchange="onSatisfactionChange">
+        <label class="option-item {{satisfiedIndex === index ? 'active' : ''}}"
+               wx:for="{{satisfaction}}" wx:key="*this">
+          <radio value="{{index}}" checked="{{satisfiedIndex === index}}" color="#1B7F6B" />
+          <text class="option-text">{{item}}</text>
+        </label>
+      </radio-group>
+    </view>
+
+    <!-- 反馈内容：textarea 多行输入 -->
+    <view class="form-item form-column">
+      <text class="form-label required">反馈内容</text>
+      <textarea class="form-textarea"
+                value="{{content}}"
+                placeholder="请描述你遇到的问题或希望增加的功能，例如「希望增加语音播报」"
+                placeholder-class="input-ph"
+                maxlength="200"
+                bindinput="onContentInput" />
+      <text class="word-count">{{content.length}}/200</text>
+    </view>
+
+    <!-- 联系方式：input 选填 -->
+    <view class="form-item">
+      <text class="form-label">联系方式</text>
+      <input class="form-input"
+             value="{{contact}}"
+             placeholder="选填，方便我们回复你"
+             placeholder-class="input-ph"
+             bindinput="onContactInput" />
+    </view>
+
+  </view>
+
+  <view class="form-tip" wx:if="{{tip}}">{{tip}}</view>
+
+  <view class="footer-space"></view>
+
+  <view class="footer-bar">
+    <button class="btn-primary" bindtap="onSubmit">提交反馈</button>
+  </view>
+
+</view>
